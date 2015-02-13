@@ -18,12 +18,22 @@ module.exports = {
         required:true
     },
 
-    /// associations
+    ////// associations
+
     comments:{
         collection:'Comment',
         via:'post'
+    },
+    owner:{
+        model:'User'
+    },
+
+    bodySize:function(){
+        return this.body.length;
     }
 
+  },
+  findByTitle:function(title,cb){
+    this.find({where:{title:{contains:title}}}).exec(cb);
   }
 };
-

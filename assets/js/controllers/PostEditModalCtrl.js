@@ -1,28 +1,29 @@
 myBlogApp.controller('PostEditModalCtrl',['$scope','$http','$modalInstance','post','AlertService',function($scope,$http,$modalInstance,post,AlertService){
-  //$scope,$http,$modalInstance,post
-  $scope.title = post.title;
-  $scope.body = post.body;
+    //$scope,$http,$modalInstance
 
-  $scope.save = function(){
+    $scope.title = post.title;
+    $scope.body = post.body;
 
-    var postData = {
-      title: $scope.title,
-      body: $scope.body
-    };
+    $scope.save = function(){
 
-    $http.put('/api/post/'+post.id,postData)
-    .success(function(data){
-      AlertService.add('success','The post has been updated');
-      $modalInstance.close(data);
-    })
-    .error(function(err){
-      alert(err);
-    });
+        var postData = {
+            title: $scope.title,
+            body: $scope.body
+        };
 
-  }
+        $http.put('/api/post/'+post.id,postData)
+        .success(function(data){
+            AlertService.add('success','The post has been updated.');
+            $modalInstance.close(data);
+        })
+        .error(function(err){
+            alert(err);
+        });
+    }
 
-  $scope.cancel =function(){
-    $modalInstance.dismiss();
-  }
+    $scope.cancel = function(){
+        $modalInstance.dismiss();
+    }
+
 
 }]);
